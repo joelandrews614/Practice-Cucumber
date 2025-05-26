@@ -2,29 +2,36 @@ package stepDefinitions;
 
 import java.time.Duration;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
+
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 
 import io.cucumber.java.en.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import pages.LoginPage;
-import utils.BaseTest;
 
-public class LoginTests extends BaseTest{
 
+public class LoginTests{	
+	
 	public static WebDriver driver = null;
 	public static LoginPage loginPage = null;
 	
+	@Before
+	public void setUp() {
 	
-	@Given("user is in the login page")
-	public void user_is_in_the_login_page() {		
-		
 		driver = WebDriverManager.chromedriver().create();
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		
 		loginPage = new LoginPage(driver);
+
+	}
+
+	
+	@Given("user is in the login page")
+	public void user_is_in_the_login_page() {
 				
 		driver.get("https://devapp.valianttinfo.com/");
 		
@@ -66,6 +73,14 @@ public class LoginTests extends BaseTest{
 	    
 		Assert.assertEquals(loginPage.errorMessage.getText(), "username is not registered");
 		loginPage.clickErrorDoneBtn();
+		
+	}
+	
+	@After
+	public void tearDown() {
+		
+		if(driver != null)
+			driver.quit();
 		
 	}
 	

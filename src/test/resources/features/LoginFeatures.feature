@@ -6,7 +6,7 @@ Feature: To Test the Login Functionalities of Valiantt Info
 
   Scenario: Validate the Login Form Design
     Then user can able to see the input elements and submit button
-	
+
   Scenario Outline: Verify successful login with valid credientials
     And user enters <username> and <password>
     When user clicks on login button
@@ -25,3 +25,4 @@ Feature: To Test the Login Functionalities of Valiantt Info
       | username | password    |
       | "joel"   | "Vrdella"   |
       | "@3442"  | "123422233" |
+      | "KJ2@3"  | "veD#2@1"   |
